@@ -9,28 +9,26 @@ pipeline {
     stages {
         stage('Git Repo & Clean') {
             steps {
-                deleteDir()
-                bat 'git clone https://github.com/Chaithanyakk29/E-ticketing.git eticket'
-                bat 'mvn clean -f eticket'
                 echo "Build Number: ${BUILD_NUMBER}"
+                bat 'mvn clean'
             }
         }
 
         stage('Install') {
             steps {
-                bat 'mvn install -f eticket'
+                bat 'mvn install'
             }
         }
 
         stage('Test') {
             steps {
-                bat 'mvn test -f eticket'
+                bat 'mvn test'
             }
         }
 
         stage('Package') {
             steps {
-                bat 'mvn package -f eticket'
+                bat 'mvn package'
             }
         }
     }
